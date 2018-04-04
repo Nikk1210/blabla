@@ -1,43 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="3" passed="3">
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="35298" started-at="2018-03-25T16:12:55Z" finished-at="2018-03-25T16:13:31Z">
+  <suite name="Default suite" duration-ms="72187" started-at="2018-04-04T04:31:51Z" finished-at="2018-04-04T04:33:03Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="35298" started-at="2018-03-25T16:12:55Z" finished-at="2018-03-25T16:13:31Z">
+    <test name="Default test" duration-ms="72187" started-at="2018-04-04T04:31:51Z" finished-at="2018-04-04T04:33:03Z">
       <class name="TestCases.HomePageTest">
-        <test-method status="PASS" signature="setup()[pri:0, instance:TestCases.HomePageTest@1fc5af1]" name="setup" is-config="true" duration-ms="21688" started-at="2018-03-25T21:42:55Z" finished-at="2018-03-25T21:43:17Z">
+        <test-method status="PASS" signature="setup()[pri:0, instance:TestCases.HomePageTest@1832929]" name="setup" is-config="true" duration-ms="26620" started-at="2018-04-04T10:01:51Z" finished-at="2018-04-04T10:02:17Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="PASS" signature="performSearch(java.lang.String)[pri:0, instance:TestCases.HomePageTest@1fc5af1]" name="performSearch" duration-ms="3083" started-at="2018-03-25T21:43:18Z" data-provider="SearchTestData" finished-at="2018-03-25T21:43:21Z">
+        <test-method status="PASS" signature="performSearch(java.lang.String)[pri:0, instance:TestCases.HomePageTest@1832929]" name="performSearch" duration-ms="43530" started-at="2018-04-04T10:02:19Z" data-provider="SearchTestData" finished-at="2018-04-04T10:03:03Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[Fortis]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- performSearch -->
-        <test-method status="PASS" signature="performSearch(java.lang.String)[pri:0, instance:TestCases.HomePageTest@1fc5af1]" name="performSearch" duration-ms="7151" started-at="2018-03-25T21:43:21Z" data-provider="SearchTestData" finished-at="2018-03-25T21:43:28Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[ati]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- performSearch -->
-        <test-method status="PASS" signature="performSearch(java.lang.String)[pri:0, instance:TestCases.HomePageTest@1fc5af1]" name="performSearch" duration-ms="2666" started-at="2018-03-25T21:43:28Z" data-provider="SearchTestData" finished-at="2018-03-25T21:43:31Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[Ash]]>
+                <![CDATA[Gary Abbott]]>
               </value>
             </param>
           </params>

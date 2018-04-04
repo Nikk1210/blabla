@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 import TestUtility.TestBase;
-import TestUtility.Utilities;
+import TestUtility.Util;
 
 public class LoginTest extends TestBase {
 	
@@ -25,18 +25,18 @@ public class LoginTest extends TestBase {
 //	@Test
 	public void checkElementsPresence()
 	{
-		boolean elementsPresent=Utilities.findElement("txtUsername").isDisplayed() &&
-				Utilities.findElement("txtPassword").isDisplayed();
+		boolean elementsPresent=Util.findElement("txtUsername").isDisplayed() &&
+				Util.findElement("txtPassword").isDisplayed();
 		Assert.assertTrue(elementsPresent);
 	}
 	
 	@Test
 	public void performLogin()
 	{
-		Utilities.findElement("txtUsername").sendKeys(configProp.getProperty("username"));
-		Utilities.findElement("txtPassword").sendKeys(configProp.getProperty("password"));
-		Utilities.findElement("btnLogin").click();
-		Utilities.applyWait(1500);
+		Util.findElement("txtUsername").sendKeys(configProp.getProperty("username"));
+		Util.findElement("txtPassword").sendKeys(configProp.getProperty("password"));
+		Util.findElement("btnLogin").click();
+		Util.applyWait(1500);
 		String title=driver.getTitle();
 		Assert.assertEquals(title, "Salesforce - Unlimited Edition", "title of home page is not valid");
 	}
@@ -46,10 +46,10 @@ public class LoginTest extends TestBase {
 //	@Test(dataProvider="LoginTestData")
 	public void dataDrivenLogin(String username, String password)
 	{
-		Utilities.findElement("txtUsername").sendKeys(username);
-		Utilities.findElement("txtPassword").sendKeys(password);
-		Utilities.findElement("btnLogin").click();
-		Utilities.applyWait(1500);
+		Util.findElement("txtUsername").sendKeys(username);
+		Util.findElement("txtPassword").sendKeys(password);
+		Util.findElement("btnLogin").click();
+		Util.applyWait(1500);
 		String title=driver.getTitle();
 		Assert.assertEquals(title, "Salesforce - Unlimited Edition", "title of home page is not valid");
 	}
@@ -57,7 +57,7 @@ public class LoginTest extends TestBase {
 	@DataProvider(name="LoginTestData")
 	public Object[][] getLoginTestData()
 	{
-		Object[][] data=Utilities.fetchExcelData(dataFile,"LoginTest");
+		Object[][] data=Util.fetchExcelData(dataFile,"LoginTest");
 		return data;
 	}
 	

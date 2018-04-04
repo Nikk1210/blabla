@@ -5,7 +5,7 @@
     <classes>
       <class name="TestCases.HomePageTest">
         <methods>
-          <include name="performSearch" invocation-numbers="0 1 2"/>
+          <include name="performSearch" invocation-numbers="0"/>
           <include name="setup"/>
         </methods>
       </class> <!-- TestCases.HomePageTest -->

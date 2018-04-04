@@ -15,8 +15,8 @@ public class TestBase {
 	
 	public TestBase()
 	{
-		configProp=Utilities.loadProperties(currentPath+"\\src\\main\\java\\resources\\config.properties");		
-		orProp=Utilities.loadProperties(currentPath+"\\src\\main\\java\\resources\\OR.properties");
+		configProp=Util.loadProperties(currentPath+"\\src\\main\\java\\resources\\config.properties");		
+		orProp=Util.loadProperties(currentPath+"\\src\\main\\java\\resources\\OR.properties");
 	}
 
 	public void intialization()
@@ -26,7 +26,7 @@ public class TestBase {
 		driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
 		driver.get(configProp.getProperty("url"));
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
 	}
 }
