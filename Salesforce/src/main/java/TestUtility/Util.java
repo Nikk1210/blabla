@@ -1,17 +1,26 @@
 package TestUtility;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
 import org.testng.asserts.SoftAssert;
 
 public class Util extends TestBase {
@@ -57,9 +66,17 @@ public class Util extends TestBase {
 		// int cellCount=sheet.getRow(0).getLastCellNum();
 		// System.out.println(rowCount+" "+cellCount);
 		cellData = new Object[sheet.getLastRowNum()][sheet.getRow(0).getLastCellNum()];
+		XSSFCell cell;
 		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
 			for (int j = 0; j < sheet.getRow(0).getLastCellNum(); j++) {
-				cellData[i - 1][j] = sheet.getRow(i).getCell(j).getStringCellValue();
+				cell=sheet.getRow(i).getCell(j, sheet.getRow(i).CREATE_NULL_AS_BLANK);
+				if(cell.getCellType()==Cell.CELL_TYPE_BLANK)
+					cellData[i - 1][j] = "";
+				else if(cell.getCellType()==(int)Cell.CELL_TYPE_NUMERIC)
+					cellData[i - 1][j] = Integer.toString((int)cell.getNumericCellValue());
+				else if(cell.getCellType()==Cell.CELL_TYPE_STRING)
+					cellData[i-1][j]=cell.getStringCellValue();
+				
 				System.out.println(i + "," + j + "->" + cellData[i - 1][j]);
 			}
 		}
@@ -92,6 +109,22 @@ public class Util extends TestBase {
 			return null;
 	}
 
+	public static void captureScreenshot(ITestResult result)
+	{
+		SimpleDateFormat dateformat=new SimpleDateFormat("dd_MM_yyyy_hh_mm_ss");
+		String timestamp=dateformat.format(new Date());
+		String fileName=currentPath+"//Screenshots//"+result.getName()+"_"+ timestamp +".png";
+		
+		File srcFile=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		File destFile=new File(fileName);
+		try {
+			FileUtils.copyFile(srcFile, destFile);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 	public static WebElement findElement(String object) {
 		return driver.findElement(fetchLocator(object));
 	}
@@ -105,6 +138,12 @@ public class Util extends TestBase {
 	public static void clickOnElement(String locator) {
 		WebElement element = findElement(locator);
 		element.click();
+	}
+	
+	public static String getText(String locator)
+	{
+		WebElement element = findElement(locator);
+		return element.getText();
 	}
 
 	public static List<WebElement> findElements(String object) {
@@ -137,13 +176,13 @@ public class Util extends TestBase {
 		return element;
 	}
 
-	public static SoftAssert assertTrue(boolean condition, String message) {
+	public static SoftAssert softAssertTrue(boolean condition, String message) {
 		SoftAssert assertion = new SoftAssert();
 		assertion.assertTrue(condition, message);
 		return assertion;
 	}
 
-	public static SoftAssert assertEquals(boolean actual, boolean expected, String message) {
+	public static SoftAssert softAssertEquals(boolean actual, boolean expected, String message) {
 		SoftAssert assertion = new SoftAssert();
 		assertion.assertEquals(actual, expected, message);
 		return assertion;

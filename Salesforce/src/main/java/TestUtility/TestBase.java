@@ -26,7 +26,12 @@ public class TestBase {
 		driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
 		driver.get(configProp.getProperty("url"));
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().setScriptTimeout(15, TimeUnit.SECONDS);
+	}
+	
+	public static void main(String[] args) {
+		TestBase base=new TestBase();
+		base.intialization();
 	}
 }
